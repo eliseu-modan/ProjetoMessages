@@ -1,0 +1,90 @@
+1 / criar dependencias do projeto
+intalar o yarn
+npm init -y 
+npm install typescript
+npm install @types/express
+npm install prisma
+npm install @prisma/client
+npm install express
+npm install mysql
+npm install nodemon
+npm install ts-node-dev
+npm install cors
+npm install @types/cors
+
+2 -configurar o ambiente typescript
+    "dev:server": "ts-node-dev --respawn --transpile-only src/server.ts"
+    - yarn tsc --init    - yarn tsc 
+    "outDir": "./dist",  
+
+3- criar server com express
+
+import express, { json } from 'express'
+import cors from 'cors'
+import routes from './routes'
+
+const app = express()
+app.use(express.json())
+app.use(cors())
+app.use(routes)
+
+app.listen(3333)
+
+4 -   criar arquivo de routas da aplicação
+
+import { Router } from "express";
+import UserController from "./controllers/UserController";
+
+const routes = Router();
+routes.get('/users',UserController.getUsers)
+routes.get('/users/create',UserController.CreateUser)
+export default routes
+
+5 - criar o arquivo de shemas do prisma
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root@localhost:3306/systemfullstack"
+}
+
+model User {
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  name  String?
+}
+
+6- confgurar o software de gerenciamento do banco de dados 
+  banco de dados npx prisma migrate dev
+
+ comando my sql 
+				
+delete from user where id > 0
+ ALTER TABLE user AUTO_INCREMENT = 1
+
+alterar uma coluna 
+npx prisma migrate dev --name user
+npx prisma db-push
+
+
+
+  
+
+
+7-criar os serviços e os controllers da apliccation
+
+
+front end
+
+instalar aaplicação
+yarn create react-app Frontend --template=typescript
+
+instalar as dependecias
+npm install axios
+
+
+

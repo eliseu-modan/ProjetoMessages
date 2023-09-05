@@ -1,0 +1,23 @@
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = "mysql://root:12345Junior.@localhost:3306/projetoteste"
+}
+
+model CreateMessages {
+  id      Int      @id @default(autoincrement())
+  name String @default("")
+  email    String   @unique
+  subject  String 
+}
+
+model CreateUser {
+  id      Int      @id @default(autoincrement())
+  email    String   @unique
+  password String
+}
