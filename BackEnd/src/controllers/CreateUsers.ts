@@ -17,7 +17,8 @@ export default {
                 }
             })
             if (existingUser) {
-                return res.status(400).json({ message: 'Este email já está em uso.' });
+                return res.status(400
+                ).json({ message: 'Este email já está em uso.' });
             }
 
             const hashedPassword = await bcrypt.hash(password, 10);
@@ -30,8 +31,9 @@ export default {
                 
             });
 
+           
             console.log('Usuario Registrado',email ,password)
-            return res.status(201).json(newUser);
+            return res.json('usuarios')
             
         } catch (error) {
             console.error('Erro ao registrar usuário:', error);

@@ -2,11 +2,18 @@ import React, { useEffect, useState } from 'react';
 import User from './components/CreateMessage/CreateMessageForm';
 import ScreenLogin from './components/Login/Login';
 import '../src/style/style.css';
+import Users from './components/Users/Users';
+import { BrowserRouter as Router, Route, Link , Routes} from 'react-router-dom';
+
 
 function App() {
 
+
+  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-     console.log(isLoggedIn)
+
+
+
   useEffect(() => {
     // Verifique se há um token JWT no Local Storage (ou outro local seguro)
     const token = localStorage.getItem('token');
@@ -18,19 +25,31 @@ function App() {
       setIsLoggedIn(false);
       console.log('Não há token');
     }
-  }); // Certifique-se de incluir [] como dependência para que o useEffect seja executado apenas uma vez
-
+  }); 
   return (
     <div className="App">
+     
       <div>
 
-      {isLoggedIn ? (
-        <User></User>
+        {isLoggedIn ? (
+          <>
+           <Router>
+        <div id='buttonUsuarios'>
+          <Link to="/usuarios/getData">  Usuarios</Link>
+          <Routes>
+            <Route path="/usuarios/getData" element={<Users />} />
+          </Routes>
+        </div>
+      </Router>
+          <User></User>
+          </>
         ) : (
+        
           <ScreenLogin></ScreenLogin>
-          )}
+          
+        )}
+      </div>
     </div>
-          </div>
   );
 }
 

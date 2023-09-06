@@ -9,8 +9,6 @@ html{
 body{
         margin-bottom:20px ;
 }
-
-
  /*Form create messagem */
  #tituleFormCreate{
     position: absolute;
@@ -135,7 +133,7 @@ input {
     width: 200%;
     /* padding-left: 80px; */
     border-radius: 5px;
-    background-color:#acacac;
+    background-color:#007bff;
     /* border: solid 1px #000000; */
     color: #000000;
     /* display: none; */
@@ -340,6 +338,7 @@ font-size: larger;
     font-size: 20px;
     color: whitesmoke;
     border-radius: 20px;
+    cursor: pointer;
 }
 
 
@@ -358,6 +357,7 @@ font-size: larger;
     width: 500px;
     left: 70px;
     height: 10px;
+    background-color: #cccccc;
 }
 #inputEmailUpdate{
     top: -80px;
@@ -365,15 +365,24 @@ font-size: larger;
 #inputSubjectlUpdate{
     top: -120px;
 }
+#cancelFormUpdate , #UpdateDataForm{
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    opacity: 80%;
+}
+
 #cancelFormUpdate{
     position: relative;
     top: -5px;
     left: 50%;
+    background-color: #ff7676;
 }
 #UpdateDataForm{
     position: absolute;
-    top: -5px;
-    left: 51%;
+    top: 135px;
+    left: 36%;
+    background-color: #38d46c;
 }
 
 #labelNameUpdate ,#labelEmailUpdate , #labelSubjectUpdate{
@@ -382,6 +391,7 @@ font-size: larger;
     font-weight: 100;
     font-size: 18px;
     top: 6px;
+    
 }
 #labelEmailUpdate{
     top: -32px;
@@ -389,4 +399,73 @@ font-size: larger;
 #labelSubjectUpdate{
     top: -72px;
 }
+#editErrRegister{
+    position: absolute;
+    padding: 20px;
+    left: 45%;
+    background-color: #ff7676;
+    border-radius: 50px;
+}
+#editSuccess{
+    position: absolute;
+    padding: 20px;
+    left: 45%;
+    background-color: #38d46c;
+    border-radius: 50px;
 
+}
+#StatusLogin{
+    position: absolute;
+    padding: 20px;
+    left: 45%;
+    background-color: #ff7676;
+    border-radius: 50px;
+
+}
+#editUsers{
+    position: relative;
+    background-color: #cccccc;
+    height: 1010px;
+    z-index: 9;
+}
+#buttonUsuarios a{
+    position: absolute;
+text-decoration: none;   
+  border: none;
+    background-color: #ff7676;
+    opacity: 75%;
+    padding:     5px 25px 5px 25px;
+    font-size: 20px;
+    color: whitesmoke;
+    border-radius: 20px;
+    left: 80%;
+    top: 47px;
+
+}
+#editPostionUsers{
+    position: relative;
+    top: 100px;
+    display: flex;
+    
+    width: 450px;
+    background-color: white;
+border: solid 1px black;
+border-radius: 20px;
+
+}
+#editBody{
+    display: flex;
+    padding: 20px;
+    background-color: white;
+    border-radius: 20px;
+    
+}
+#hidden{
+visibility: hidden;
+}
+#editNameUsers{
+    position: absolute;
+    left: 4%;
+top: 60px;
+font-size: 20px;
+}
