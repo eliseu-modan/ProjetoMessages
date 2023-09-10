@@ -62,8 +62,8 @@ const MyForm: React.FC = () => {
         <input type="text" name="name" id='inputnameFormMesssage' value={formData.name} onChange={handleInputChange} placeholder='digite o nome' />
         <label id='labelEmailFormMessage'>Digite o Email :</label>
         <input type="email" name="email" id='inputemailFormMessage' value={formData.email} onChange={handleInputChange} placeholder='digite o email' />
-        <label id='labelSubjectFormMessage'>Assunto </label>
-        <input type="text" name="subject" id='inputSubjectFormMessage' value={formData.subject} onChange={handleInputChange} placeholder='digite o assunto' />
+        <label id='labelSubjectFormMessage'>Pensamento </label>
+        <input type="text" name="subject" id='inputSubjectFormMessage' value={formData.subject} onChange={handleInputChange} placeholder='digite o pensamento' />
         <button id='editButtonFormMessage' onClick={updatePage} type="submit" >Submit</button>
 
       </form>

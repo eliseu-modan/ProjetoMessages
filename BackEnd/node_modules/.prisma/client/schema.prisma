@@ -6,7 +6,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://root:12345Junior.@localhost:3306/projetoteste"
+  url      = "mysql://root@localhost:3306/systemfullstack"
 }
 
 model CreateMessages {

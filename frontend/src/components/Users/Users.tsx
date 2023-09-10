@@ -12,10 +12,10 @@ const Users = () =>{
     api.get<UsersCreated[]>('/users/Users').then(response =>{
      setDataUser(response.data)
     })
-  })
+  }, [])
     return ( 
 <>
-          <div id='editUsers'>Meus Users
+          <div id='editUsers'>
           <a href="/">Voltar</a>
         {dataUser.map(user => (
             <div id='overflow'>

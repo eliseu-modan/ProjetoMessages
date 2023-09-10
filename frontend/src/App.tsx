@@ -35,9 +35,9 @@ function App() {
           <>
            <Router>
         <div id='buttonUsuarios'>
-          <Link to="/usuarios/getData">  Usuarios</Link>
+          <Link to="/usuarios/Registrados">  Usuarios</Link>
           <Routes>
-            <Route path="/usuarios/getData" element={<Users />} />
+            <Route path="/usuarios/Registrados" element={<Users />} />
           </Routes>
         </div>
       </Router>

@@ -61,9 +61,8 @@ const UpdateTable: React.FC<DataofBank> = ({ ids, names, emails, subjects }) => 
           <button id='cancelFormUpdate' onClick={() => setshowForm(false)}>Cancelar </button>
         </div>
       ) : (
-        <div>
           <button id='Update' onClick={EditData}>Editar</button>
-        </div>
+     
       )}
     </>
   );
