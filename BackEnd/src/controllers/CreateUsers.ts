@@ -10,7 +10,6 @@ export default {
 
         const { email, password } = req.body
         try {
-            // Verifique se o usuário já existe
             const existingUser = await prisma.createUser.findUnique({
                 where: {
                     email,

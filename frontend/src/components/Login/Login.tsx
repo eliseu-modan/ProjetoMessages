@@ -8,9 +8,6 @@ interface dataFormI {
 }
 const Login: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState('');
-
-
-
   const [showLogin, setShowLogin] = useState(true);
   console.log(showLogin)
   const [dataForm, setdataFormLogin] = useState<dataFormI>({
@@ -18,7 +15,7 @@ const Login: React.FC = () => {
     password: ''
   })
   function Cadastrar() {
-    setShowLogin(false); // Altera o estado para ocultar o componente de login
+    setShowLogin(false);
   }
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = event.target
@@ -33,23 +30,21 @@ const Login: React.FC = () => {
     try {
       const response = await api.post('/users/login', dataForm)
       if (response.data.token) {
-        // Armazene o token no Local Storage ou em outro local seguro
         localStorage.setItem('token', response.data.token);
-        // Redirecione ou faça outras ações após o login bem-sucedido
-        window.location.href = '/'; // Por exemplo, redirecione para a página inicial
+        window.location.href = '/';
       } else {
-        // Lide com o erro de autenticação aqui, se necessário
+        console.log('erro')
       }
     } catch (error) {
       setErrorMessage('Usuario ou senha incorreto')
-      setInterval(()=>{
+      setInterval(() => {
         window.location.reload()
-       },1000)
+      }, 1000)
     }
   }
   return (
     <>
-    {errorMessage && <p id='StatusLogin'>{errorMessage}</p>}
+      {errorMessage && <p id='StatusLogin'>{errorMessage}</p>}
       {showLogin ? (
         <div id='screenOff'>
           <div className='tituleScreenLogin'><span id='styleScreenLogin'>Efetuar o Login</span></div>

@@ -5,15 +5,15 @@ import prisma from '../importPrisma';
 
 export default {
 
-    async UserFront(req: Request, res: Response) {
+    async CreateMessages(req: Request, res: Response) {
         try {
             const { email, name, subject } = req.body;
             const uniqueEmail = email + '_' + Date.now(); // Adicionar um carimbo de data/hora único
-            const userFront = { name, email: uniqueEmail, subject };
+            const DataMesssages = { name, email: uniqueEmail, subject };
 
-            console.log('dados recebidos do front end ', userFront)
+            console.log('Mensagem Cadastrada', DataMesssages)
             const createDataFrontEnd = await prisma.createMessages.create({
-                data: userFront
+                data: DataMesssages
             })
         }
         catch (error) {
@@ -21,10 +21,10 @@ export default {
         }
     },
 
-    async SendFront(req: Request, res: Response) {
+    async ShowMessages(req: Request, res: Response) {
         try {
-            const usuarios = await prisma.createMessages.findMany();
-            res.json(usuarios)
+            const MessagesData = await prisma.createMessages.findMany();
+            res.json(MessagesData)
         }
         catch (error) {
             console.log('error', error)
@@ -36,10 +36,9 @@ export default {
             }
         }
     },
-    async Userdelete(req: Request, res: Response) {
+    async DeleteMessages(req: Request, res: Response) {
         try {
             const id = parseInt(req.params.id); // Acessar o ID a partir dos parâmetros da rota
-            console.log(id);
             const deletar = await prisma.createMessages.delete({
                 where: {
                     id: id
@@ -56,26 +55,26 @@ export default {
 
 
     async UpdateMessages(req: Request, res: Response) {
-        const {ids, email , name, subject } = req.body;
+        const { ids, email, name, subject } = req.body;
         const id = ids
-            // Faça a lógica de atualização aqui
-            const messages = {email, id ,name, subject}
+        // Faça a lógica de atualização aqui
+        const messages = { email, id, name, subject }
 
 
-            try {
-                await prisma.createMessages.update({
-                  where: {
+        try {
+            await prisma.createMessages.update({
+                where: {
                     id: id,
-                  },
-                  data: messages
-                });
-                console.log("Registro atualizado com sucesso");
-                
+                },
+                data: messages
+            });
+            console.log("Dados da Mensagem atualizados", messages);
 
-          } catch (error) {
+
+        } catch (error) {
             console.error('Erro ao atualizar os dados', error);
             res.status(500).json({ error: 'Erro ao atualizar os dados' });
-          }
+        }
     }
 
 

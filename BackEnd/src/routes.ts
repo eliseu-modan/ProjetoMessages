@@ -8,17 +8,15 @@ import Users from "./controllers/Users"
 
 import authMiddleware from "./authMiddleware";
 const routes = Router();
-// routes.get('/users',CreateMessages.getUsers)
-// routes.get('/users/create',CreateMessages.CreateUser)
-
-
-routes.get('/users/getData',CreateMessages.SendFront)
-routes.get('/users/Users' ,Users.getUsers )
-routes.post('/users/front',CreateMessages.UserFront)
-routes.delete('/users/:id',CreateMessages.Userdelete)
-routes.post('/users/create',CreateUsers.NewUser)
-routes.post('/users/login',LoginUser.Login)
+routes.post('/users/front',CreateMessages.CreateMessages)
+routes.get('/users/getData',CreateMessages.ShowMessages)
+routes.delete('/users/:id',CreateMessages.DeleteMessages)
 routes.put('/users/Update' , CreateMessages.UpdateMessages)
+routes.post('/users/create',CreateUsers.NewUser)
+routes.get('/users/Users' ,Users.ShowUsers )
+routes.post('/users/login',LoginUser.Login)
+
+
 
 
 

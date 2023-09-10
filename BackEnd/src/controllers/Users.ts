@@ -7,7 +7,7 @@ import prisma from '../importPrisma';
 
 export default {
 
-    async getUsers(req : Request , res : Response){
+    async ShowUsers(req : Request , res : Response){
        try {
         const users = await prisma.createUser.findMany({
             select: {

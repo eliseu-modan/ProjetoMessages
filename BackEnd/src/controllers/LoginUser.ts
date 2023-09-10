@@ -53,26 +53,28 @@ export default {
       }
       const passwordMatch = await bcrypt.compare(password, userCreate.password);
 
+
+
+
       if (!passwordMatch) {
         const loginAttempts = (loginAttemptsCache.get(userId.toString()) as number || 0) + 1;
         loginAttemptsCache.set(userId.toString(), loginAttempts);
-
         console.log('Senha incorreta');
         console.log(`Tentativas restantes: ${5 - loginAttempts}`);
-
         if (loginAttempts >= 5) {
           const lockDurationMinutes = 5; // Tempo de bloqueio em minutos
           blockUser(userId, lockDurationMinutes);
           return res.status(401).json({ message: `Senha incorreta. Aguarde ${lockDurationMinutes} minutos para tentar novamente.` });
         }
-
         return res.status(401).json({ message: 'Senha incorreta' });
       } else {
         // Resetar as tentativas após um login bem-sucedido
         loginAttemptsCache.del(userId.toString());
-
         console.log('Senha correta');
       }
+
+
+
 
       console.log('LOGIN EFETUADO')
       const token = generateJwtToken(userId);

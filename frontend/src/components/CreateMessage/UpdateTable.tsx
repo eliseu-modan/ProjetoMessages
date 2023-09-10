@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import api from '../../services/api';
 
-interface UpdateTableProps {
+interface DataFormUpdateTable {
   ids: number; // Defina a prop "id" como um número
   name: string;
   email: string;
   subject: string
 }
-interface DataofBank {
+interface DataProps {
   ids: number; // Defina a prop "id" como um número
   names: string;
   emails: string;
   subjects: string
 }
-const UpdateTable: React.FC<DataofBank> = ({ ids, names, emails, subjects }) => {
+const UpdateTable: React.FC<DataProps> = ({ ids, names, emails, subjects }) => {
   const [showForm, setshowForm] = useState(false)
-  const [valueData, setvalueData] = useState<UpdateTableProps>({
+  const [valueData, setvalueData] = useState<DataFormUpdateTable>({
     ids: ids,
     name: names,
     email: emails,
@@ -24,7 +24,6 @@ const UpdateTable: React.FC<DataofBank> = ({ ids, names, emails, subjects }) => 
   function EditData() {
     setshowForm(true)
   }
-  console.log(valueData)
   const handleSbubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     try {
@@ -61,8 +60,8 @@ const UpdateTable: React.FC<DataofBank> = ({ ids, names, emails, subjects }) => 
           <button id='cancelFormUpdate' onClick={() => setshowForm(false)}>Cancelar </button>
         </div>
       ) : (
-          <button id='Update' onClick={EditData}>Editar</button>
-     
+        <button id='Update' onClick={EditData}>Editar</button>
+
       )}
     </>
   );
