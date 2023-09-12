@@ -14,17 +14,11 @@ function GetUsers() {
   const [getusers, setgetUsers] = useState<Iuser[]>([]);
   const [userDeleted, setUserDeleted] = useState(false); // Estado para sinalizar exclusão
   useEffect(() => {
-
-
-
     api.get<Iuser[]>('/users/getData').then(response => {
       setgetUsers(response.data);
     });
-  
   // fetchData()
   }, [userDeleted]); // Adicione userDeleted como dependência
-
-
   const handleDelete = async (id: number) => {
     try {
       await api.delete(`/users/${id}`);
@@ -39,12 +33,11 @@ function GetUsers() {
       <div id="editTituleTable">
         <div id="editTitleName">Nome</div>
         <div id="editTitleEmail">Email</div>
-        <div id="editSubjectTitle">Mensagem</div>
+        <div id="editSubjectTitle">Tarefas</div>
       </div>
       <div>
         {getusers.map(user => (
           <div id='overflows'>
-
             <table border={1}  key={user.id}>
               <tbody id="editData">
                 <tr id="editName">{user.name} </tr>

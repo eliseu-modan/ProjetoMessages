@@ -47,15 +47,21 @@ const Login: React.FC = () => {
       {errorMessage && <p id='StatusLogin'>{errorMessage}</p>}
       {showLogin ? (
         <div id='screenOff'>
-          <div className='tituleScreenLogin'><span id='styleScreenLogin'>Efetuar o Login</span></div>
-          <form id='styleFormLogin' onSubmit={handleSubmit}>
-            <label id='labelEmailLogin'>Email</label>
-            <input id='inputEmailLogin' type="email" name='email' value={dataForm.email} onChange={handleInputChange} placeholder='Digite o Email' />
-            <label id='labelPasswordLogin'>Senha</label>
-            <input id='inputPasswordLogin' type="text" name='password' value={dataForm.password} onChange={handleInputChange} placeholder='Digite a Senha' />
-            <button id='buttonLogin' type='submit'>Login</button>
-            <button id='buttonRegisterLogin' onClick={Cadastrar}>Cadastrar</button>
+          
+          <form className='form' onSubmit={handleSubmit}>
+           <p className='form-title'>sign in to your account</p>
+           <div className='input-container'>
+            <input  type="email" name='email' value={dataForm.email} onChange={handleInputChange} placeholder='Enter Email' />
+            <span></span>
+           </div>
+           <div className='input-container'>
+            <input  type="text" name='password' value={dataForm.password} onChange={handleInputChange} placeholder='Digite a Senha' />
+           </div>
+            <button className='submit'  type='submit'>Login</button>
+            <p className='signup-link'>No account?
+            <button  onClick={Cadastrar}> Cadastrar</button></p>
           </form>
+          
         </div>
       ) : (
         <div id='sreenRegister'>

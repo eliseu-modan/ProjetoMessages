@@ -2,7 +2,7 @@
       font-family: 'Times New Roman', Times, serif;
 }
 html{
-    background-color: #cccccc;
+    background-color: #5e5e5e;
     /* height: 3000px; */
 
 }
@@ -13,7 +13,7 @@ body{
  #tituleFormCreate{
     position: absolute;
     top: -30%;
-    width: 45%;
+    width: 42%;
     left: 200px;
     padding: 10px 20px 10px 20px ;
     background-color: #007bff;
@@ -131,7 +131,6 @@ input {
     padding: 10px;
     padding-right: 80px;
     width: 200%;
-    /* padding-left: 80px; */
     border-radius: 5px;
     background-color:#e2e2e2;
     /* border: solid 1px #000000; */
@@ -160,7 +159,7 @@ input {
 
 #editData {
     position: relative;
-    top: 0px;
+    top: 15px;
     left: 2%;
     /* display: none; */
     border-radius: 30px;
@@ -168,8 +167,8 @@ input {
 }
 table{
     position: relative;
-    top: 460px;
-    left: 90px;
+    top: 480px;
+    left: 84px;
     margin-bottom: 20px;
     border-spacing: 10;
     width: 88%;
@@ -238,99 +237,70 @@ border: solid 3px #c3c3c3;
    /*form login e register */
 
 
-.tituleScreenLogin,.tituleScreenRegister{
-    position: absolute;
-    left: 20%;
-    height: 75%;
-    top: 14%;
-    width: 55%;
-    background-color: #818181;
-    border-radius: 30px;
-    opacity: 60%;
-    
-}
-
-#styleScreenLogin , #styleScreenRegister {
+   .form {
+    background-color: #fff;
+    display: block;
+    padding: 1rem;
+    max-width: 350px;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .form-title {
+    font-size: 1.25rem;
+    line-height: 1.75rem;
+    font-weight: 600;
+    text-align: center;
+    color: #000;
+  }
+  
+  .input-container {
     position: relative;
-    top: 45px;
-    left: 345px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    padding: 10px 20px 10px 20px ;
-    background-color: #007bff;
+  }
+  
+  .input-container input, .form button {
+    outline: none;
+    border: 1px solid #e5e7eb;
+    margin: 8px 0;
+  }
+  
+  .input-container input {
+    background-color: #fff;
+    padding: 1rem;
+    padding-right: 3rem;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    width: 300px;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  }
+  
+  .submit {
+    display: block;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    background-color: #4F46E5;
     color: #ffffff;
-    font-size: larger;
-    border-radius: 25px;
-
-}
-#styleFormLogin, #styleFormRegister{
-    position: absolute;
-    left: 32%;
-    width: 20%;
-    top: 25%;
-    
-}
-#labelEmailLogin , #labelEmailRegister{
-    position: relative;
-    top: 90px;
-    font-weight: 100;
-font-size: larger;
- letter-spacing: 4px;
-    font-family:'Times New Roman', Times, serif;
-}
-#inputEmailLogin , #inputEmailRegister{
-    position:relative;
-    top: 40px;
-    left: 100px;
-    height: 27px;
-
-}
-#labelPasswordLogin , #labelPasswordRegister{
-    position: relative;
-    top: 43px;
-    font-weight: 100;
-font-size: larger;
- letter-spacing: 4px;
-    font-family:'Times New Roman', Times, serif;
-}
-#inputPasswordLogin , #inputPasswordRegister{
-    position:relative;
-    top: 0px;
-    left: 100px;
-    height: 27px;
-}
-#buttonLogin , #buttonRegister , #buttonRegisterCancel{
-    position: relative;
-    left: 120%;
-    border:none;
-    top: 170px;
-    padding: 15px;
-    padding-right: 40px ;
-    padding-left:40px ;
-    background-color:#38d46c;
-    border-radius: 10px;
-    color: #ffffff;
-    cursor: pointer;
-}
-#buttonRegisterCancel{
-  left: 130%;
-  padding-left: 5px;
-  padding-right: 5px;
-  background-color: #ff7676;
-}
-#buttonRegisterLogin{
-    position: absolute;
-    left: 160%;
-    top: 150%;
-    border:none;
-    padding: 14px;
-    background-color:#38d46c;
-    color: whitesmoke;
-    padding-right: 8px ;
-    padding-left:8px ;
-    /* opacity: 70%; */
-    border-radius: 10px;
-    cursor: pointer;
-}
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    font-weight: 500;
+    width: 100%;
+    border-radius: 0.5rem;
+    text-transform: uppercase;
+  }
+  
+  .signup-link {
+    color: #6B7280;
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    text-align: center;
+  }
+  
+  .signup-link a {
+    text-decoration: underline;
+  }
 
 #logout{
     position: absolute;
@@ -344,6 +314,11 @@ font-size: larger;
     color: whitesmoke;
     border-radius: 20px;
     cursor: pointer;
+}
+#screenOff{
+    position: absolute;
+    left: 38%;
+    top: 20%;
 }
 
 
@@ -431,6 +406,7 @@ font-size: larger;
     position: absolute;
     background-color: #cccccc;
     height: 700px;
+    width: 1520px;
     z-index: 9;
     
 }

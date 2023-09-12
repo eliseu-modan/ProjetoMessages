@@ -46,13 +46,13 @@ const MyForm: React.FC = () => {
       <ShowMessageTable></ShowMessageTable>
       <div id='positionFormMessage'>
         <form id='editFormCreateMessage' onSubmit={handleSubmit}  >
-          <div ><span id='tituleFormCreate'>Cadastrar Mensagem</span></div>
+          <div ><span id='tituleFormCreate'>Cadastrar Tarefa</span></div>
           <label id='labelnameFormMessage'>Digite o nome :</label>
           <input type="text" name="name" id='inputnameFormMesssage' value={formData.name} onChange={handleInputChange} placeholder='digite o nome' />
           <label id='labelEmailFormMessage'>Digite o Email :</label>
           <input type="email" name="email" id='inputemailFormMessage' value={formData.email} onChange={handleInputChange} placeholder='digite o email' />
-          <label id='labelSubjectFormMessage'>Pensamento </label>
-          <input type="text" name="subject" id='inputSubjectFormMessage' value={formData.subject} onChange={handleInputChange} placeholder='digite o pensamento' />
+          <label id='labelSubjectFormMessage'> Tarefa : </label>
+          <input type="text" name="subject" id='inputSubjectFormMessage' value={formData.subject} onChange={handleInputChange} placeholder='digite a Tarefa ' />
           <button id='editButtonFormMessage' onClick={updatePage} type="submit" >Submit</button>
         </form>
         <button id='logout' onClick={logout}>Sair</button>

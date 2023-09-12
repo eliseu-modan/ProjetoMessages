@@ -6,7 +6,6 @@ import prisma from '../importPrisma';
 
 
 export default {
-
     async ShowUsers(req : Request , res : Response){
        try {
         const users = await prisma.createUser.findMany({
@@ -20,22 +19,14 @@ export default {
        } catch (error) {
         
        }
-         
-
-
-
 },
-
 async DeleteUsers(req :Request , res : Response){
-  
    const id = parseInt(req.params.ids)
-
   try {
     const users = await prisma.createUser.delete({
        where:{
         id:id
       }
-      
     })
     console.log('usuario deletado')
   } catch (error) {
