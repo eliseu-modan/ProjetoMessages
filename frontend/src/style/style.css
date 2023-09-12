@@ -162,7 +162,7 @@ input {
     position: relative;
     top: 0px;
     left: 2%;
- 
+    /* display: none; */
     border-radius: 30px;
 
 }
@@ -428,10 +428,11 @@ font-size: larger;
 
 }
 #editUsers{
-    position: relative;
+    position: absolute;
     background-color: #cccccc;
-    height: 1010px;
+    height: 700px;
     z-index: 9;
+    
 }
 #buttonUsuarios a{
     position: absolute;
@@ -449,28 +450,51 @@ text-decoration: none;
 }
 #editPostionUsers{
     position: relative;
-    top: 100px;
-    display: flex;
-    
+    top: 200px;
+    display: flexbox;
+    left: 20px;
     width: 450px;
-    background-color: white;
+    background-color: rgb(233, 233, 233);
 border: solid 1px black;
-border-radius: 20px;
+border-radius: 5px;
 
 }
 #editBody{
     display: flex;
     padding: 20px;
-    background-color: white;
+    background-color: rgb(233, 233, 233);
     border-radius: 20px;
     
+}
+#overflow{
+    display: inline-flex;
+    width: 500px;
+
 }
 #hidden{
 visibility: hidden;
 }
 #editNameUsers{
     position: absolute;
-    left: 4%;
+    left: 40%;
 top: 60px;
-font-size: 20px;
+font-size: 26px;
+font-family: 'Times New Roman', Times, serif;
+color: #ffffff;
+font-weight: 400;
+padding: 20px 40px;
+background-color: #9e9e9e;
+border-radius: 20px;
 }
+#buttonDeleteUsers{
+position: relative;
+left: -10%;
+top: 210px;
+height: 40px;
+border-radius: 10px;
+border: none;
+opacity: 80%;
+background-color: #ff7676;
+/* padding: 2px; */
+}
+

@@ -15,6 +15,7 @@ routes.put('/users/Update' , CreateMessages.UpdateMessages)
 routes.post('/users/create',CreateUsers.NewUser)
 routes.get('/users/Users' ,Users.ShowUsers )
 routes.post('/users/login',LoginUser.Login)
+routes.delete('/users/deleteUsers/:ids',Users.DeleteUsers)
 
 
 

@@ -6,7 +6,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = "mysql://root@localhost:3306/systemfullstack"
+  url      = "mysql://root:12345Junior.@localhost:3306/projetoteste"
 }
 
 model CreateMessages {
@@ -14,10 +14,13 @@ model CreateMessages {
   name String @default("")
   email    String   @unique
   subject  String 
+  userId  Int?
+   user    CreateUser? @relation(fields: [userId], references: [id])
 }
 
 model CreateUser {
   id      Int      @id @default(autoincrement())
   email    String   @unique
   password String
+  messages CreateMessages[] 
 }

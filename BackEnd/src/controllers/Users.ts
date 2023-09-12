@@ -24,6 +24,23 @@ export default {
 
 
 
+},
+
+async DeleteUsers(req :Request , res : Response){
+  
+   const id = parseInt(req.params.ids)
+
+  try {
+    const users = await prisma.createUser.delete({
+       where:{
+        id:id
+      }
+      
+    })
+    console.log('usuario deletado')
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 }

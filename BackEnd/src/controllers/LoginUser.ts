@@ -4,6 +4,7 @@ import prisma from "../importPrisma";
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import NodeCache from 'node-cache';
+// import  fazerSolicitacaoCreateMessages  from '../controllers/CreateMessages';
 
 // Função para gerar um token JWT
 function generateJwtToken(userId: number) {
@@ -16,9 +17,9 @@ function generateJwtToken(userId: number) {
     throw error;
   }
 }
-
 const loginAttemptsCache = new NodeCache();
 const userLockCache = new NodeCache();
+
 
 function blockUser(userId: number, lockDurationMinutes: number) {
   const unlockTime = new Date() as Date;
@@ -26,7 +27,6 @@ function blockUser(userId: number, lockDurationMinutes: number) {
   userLockCache.set(userId.toString(), unlockTime);
   console.log(`Usuário bloqueado até: ${unlockTime}`);
 }
-
 
 
 export default {
@@ -38,13 +38,12 @@ export default {
           email,
         }
       });
-
       if (!userCreate) {
         console.log('EMAIL NÃO ENCONTRADO')
         return res.status(401).json({ message: 'Usuário não encontrado' });
       }
-
       const userId = userCreate.id;
+
       const blockedUntil = userLockCache.get(userId.toString());
       if (blockedUntil && new Date() < (blockedUntil as Date)) {
         const remainingTime = Math.ceil(((blockedUntil as Date).getTime() - new Date().getTime()) / 1000);
@@ -52,8 +51,6 @@ export default {
         return res.status(401).json({ message: `Usuário bloqueado. Tente novamente em ${remainingTime} segundos.` });
       }
       const passwordMatch = await bcrypt.compare(password, userCreate.password);
-
-
 
 
       if (!passwordMatch) {
@@ -72,14 +69,15 @@ export default {
         loginAttemptsCache.del(userId.toString());
         console.log('Senha correta');
       }
-
-
-
-
       console.log('LOGIN EFETUADO')
       const token = generateJwtToken(userId);
+      const usersId = userCreate.id;
+      // const response = await fazerSolicitacaoCreateMessages(userId);
 
-      // Retorne o token JWT na resposta
+        
+
+
+       // Retorne o token JWT na resposta
       console.log(token)
       return res.json({ token });
     } catch (error) {
@@ -88,3 +86,4 @@ export default {
     }
   }
 }
+

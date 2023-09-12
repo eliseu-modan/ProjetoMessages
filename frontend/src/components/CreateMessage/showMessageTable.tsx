@@ -34,7 +34,6 @@ function GetUsers() {
       console.error('Error deleting user:', error);
     }
   };
-
   return (
     <div className="App">
       <div id="editTituleTable">
@@ -44,7 +43,7 @@ function GetUsers() {
       </div>
       <div>
         {getusers.map(user => (
-          <div id='overflow'>
+          <div id='overflows'>
 
             <table border={1}  key={user.id}>
               <tbody id="editData">
@@ -56,7 +55,6 @@ function GetUsers() {
               </tbody>
             </table>
           </ div>
-    
         ))}
       </div>
     </div>
