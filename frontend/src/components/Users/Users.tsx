@@ -1,5 +1,6 @@
 import react, { useEffect, useState } from 'react'
 import api from '../../services/api'
+import { addAuthorizationHeader } from '../../MiddlewareToken';
 
 
 interface UsersCreated {
@@ -10,6 +11,11 @@ const Users = () => {
   const [dataUser, setDataUser] = useState<UsersCreated[]>([])
   const [updateUser, setupdateUsers] = useState(false)
   useEffect(() => {
+    addAuthorizationHeader();
+  }, []);
+  useEffect(() => {
+    
+    
     api.get<UsersCreated[]>('/users/Users').then(response => {
       setDataUser(response.data)
     })

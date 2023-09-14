@@ -8,7 +8,7 @@ import {outroComponente} from "./CreateMessages";
 // Função para gerar um token JWT
 function generateJwtToken(userId: number) {
   try {
-    const secretKey = 'tokenJu'; // Troque por uma chave secreta real e segura
+    const secretKey = '12345'; // Troque por uma chave secreta real e segura
     const token = jwt.sign({ userId }, secretKey, { expiresIn: '1h' }); // Configure o tempo de expiração desejado
     return token;
   } catch (error) {
@@ -16,6 +16,8 @@ function generateJwtToken(userId: number) {
     throw error;
   }
 }
+
+
 const loginAttemptsCache = new NodeCache();
 const userLockCache = new NodeCache();
 //bloquear usuario 

@@ -1,20 +1,29 @@
-import { Request, Response, NextFunction } from 'express';
-import jwt from 'jsonwebtoken';
+import { Request, Response, NextFunction, request } from 'express';
+import jwt, { VerifyErrors } from 'jsonwebtoken';
+
 
 function authenticateToken(req: Request, res: Response, next: NextFunction) {
   const token = req.headers.authorization;
+  console.log('middleware do token back end ', token)
 
   if (!token) {
-    return res.sendStatus(401); // Token não fornecido, acesso não autorizado
+    return res.status(401).json({ error: 'Token não fornecido, acesso não autorizado' });
   }
 
-  jwt.verify(token, 'tokenJu', (err, user) => {
+
+
+  // Recomenda-se usar uma variável de ambiente ou arquivo de configuração para armazenar o segredo
+
+
+  jwt.verify(token, '12345', (err: VerifyErrors | null, userId:any) => {
+    console.log(userId)
     if (err) {
-      return res.sendStatus(403); // Token inválido ou expirado, acesso proibido
-    }
-    // Anexar as informações do usuário ao objeto de solicitação
-    (req as any).user = user;
-    next(); // Permitir que a solicitação prossiga para a rota protegida
+      console.log(err)
+        return res.status(403).json({error : "token invalido"})
+      }
+req.user = userId
+    
+    next(); 
   });
 }
 

@@ -4,19 +4,20 @@ import ScreenLogin from './components/Login/Login';
 import '../src/style/style.css';
 import Users from './components/Users/Users';
 import { BrowserRouter as Router, Route, Link , Routes} from 'react-router-dom';
+import jwt from 'jsonwebtoken'
+import api from './services/api';
 
 
 function App() {
-
-
+  
+  
   
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-
-
-  useEffect(() => {
-    // Verifique se há um token JWT no Local Storage (ou outro local seguro)
-    const token = localStorage.getItem('token');
+  
+  const token = localStorage.getItem('token');
+  useEffect(()=>{
+    console.log('token em app', token)
+    
 
     if (token) {
       setIsLoggedIn(true);
@@ -25,7 +26,16 @@ function App() {
       setIsLoggedIn(false);
       console.log('Não há token');
     }
-  }); 
+    
+    
+  },[])
+    
+
+ 
+  
+  
+  
+  
   return (
     <div className="App">
      
@@ -37,7 +47,7 @@ function App() {
         <div id='buttonUsuarios'>
           <Link to="/usuarios/Registrados">  Usuarios</Link>
           <Routes>
-            <Route path="/usuarios/Registrados" element={<Users />} />
+            <Route path="/usuarios/Registrados" element={<Users  />} />
           </Routes>
         </div>
       </Router>
