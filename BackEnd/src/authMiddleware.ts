@@ -1,30 +1,24 @@
-import { Request, Response, NextFunction, request } from 'express';
-import jwt, { VerifyErrors } from 'jsonwebtoken';
+import jwt, { Secret } from 'jsonwebtoken';
+import { Request, Response, NextFunction } from 'express';
+import config from 'config';
 
-
+const secretKey: Secret = config.get('jwtSecret');
 function authenticateToken(req: Request, res: Response, next: NextFunction) {
-  const token = req.headers.authorization;
-  console.log('middleware do token back end ', token)
-
-  if (!token) {
-    return res.status(401).json({ error: 'Token não fornecido, acesso não autorizado' });
+  const authorizationHeader = req.header('Authorization');
+  if (!authorizationHeader) {
+    return res.status(401).json({ message: 'Token de acesso não fornecido' });
   }
-
-
-
-  // Recomenda-se usar uma variável de ambiente ou arquivo de configuração para armazenar o segredo
-
-
-  jwt.verify(token, '12345', (err: VerifyErrors | null, userId:any) => {
-    console.log(userId)
-    if (err) {
-      console.log(err)
-        return res.status(403).json({error : "token invalido"})
-      }
-req.user = userId
-    
-    next(); 
-  });
+  if (!authorizationHeader.startsWith('Bearer ')) {
+    return res.status(401).json({ message: 'Formato de token inválido' });
+  }
+  const token = authorizationHeader.substring(7);
+  try {
+    const decodedToken = jwt.verify(token, secretKey);
+    req.user = decodedToken;
+    next(); // Prossiga para a próxima rota/middleware
+  } catch (error) {
+    console.error('Token inválido:', error);
+    return res.status(401).json({ message: 'Token de acesso inválido ou expirado' });
+  }
 }
-
 export default authenticateToken;

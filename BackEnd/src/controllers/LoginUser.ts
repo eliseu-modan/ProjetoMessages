@@ -2,21 +2,27 @@ import { Request, Response } from "express";
 import CreateUsers from "./CreateUsers";
 import prisma from "../importPrisma";
 import bcrypt from 'bcryptjs'
-import jwt from 'jsonwebtoken'
+import jwt, { SignOptions, Secret } from 'jsonwebtoken';
 import NodeCache from 'node-cache';
 import {outroComponente} from "./CreateMessages";
+import config from 'config'
+
 // Função para gerar um token JWT
-function generateJwtToken(userId: number) {
+function generateJwtToken(userId: number, expirationTimeInSeconds: number) {
   try {
-    const secretKey = '12345'; // Troque por uma chave secreta real e segura
-    const token = jwt.sign({ userId }, secretKey, { expiresIn: '1h' }); // Configure o tempo de expiração desejado
+    const secretKey: Secret = config.get('jwtSecret');
+    
+    // Calcular a data de validade com base no tempo atual + o tempo de expiração personalizado
+    const expirationDate = Math.floor(Date.now() / 1000) + expirationTimeInSeconds;
+    
+    const token = jwt.sign({ userId, exp: expirationDate }, secretKey); // Note o uso de 'exp'
+    console.log("token criado " , token);
     return token;
   } catch (error) {
     console.error('Erro ao gerar o token:', error);
     throw error;
   }
 }
-
 
 const loginAttemptsCache = new NodeCache();
 const userLockCache = new NodeCache();
@@ -27,7 +33,6 @@ function blockUser(userId: number, lockDurationMinutes: number) {
   userLockCache.set(userId.toString(), unlockTime);
   console.log(`Usuário bloqueado até: ${unlockTime}`);
 }
-
 export default {
   async Login(req: Request, res: Response) {
     const { email, password } = req.body;
@@ -71,7 +76,7 @@ export default {
         console.log('Senha correta');
       }
       console.log('LOGIN EFETUADO')
-      const token = generateJwtToken(userId);
+      const token = generateJwtToken(userId, 120);
       const userIdParam = userCreate.id; // Onde você obtém o userId
 
       // Chame o outroComponente e passe o userId

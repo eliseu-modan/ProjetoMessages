@@ -6,6 +6,7 @@ import Users from './components/Users/Users';
 import { BrowserRouter as Router, Route, Link , Routes} from 'react-router-dom';
 import jwt from 'jsonwebtoken'
 import api from './services/api';
+import { addAuthorizationHeader } from '../src/MiddlewareToken';
 
 
 function App() {
@@ -15,10 +16,12 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   
   const token = localStorage.getItem('token');
-  useEffect(()=>{
-    console.log('token em app', token)
-    
+  
+  
 
+  useEffect(()=>{
+    console.log('token chegou em App', token)
+    
     if (token) {
       setIsLoggedIn(true);
       console.log('Há um token');
@@ -45,9 +48,9 @@ function App() {
           <>
            <Router>
         <div id='buttonUsuarios'>
-          <Link to="/usuarios/Registrados">  Usuarios</Link>
+          <Link to="/usuarios/Users">  Usuarios</Link>
           <Routes>
-            <Route path="/usuarios/Registrados" element={<Users  />} />
+            <Route path="/usuarios/Users" element={<Users  />} />
           </Routes>
         </div>
       </Router>

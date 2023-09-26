@@ -44,36 +44,23 @@ const Screenregister: React.FC = () => {
     }
     return (
         <>
-            {/* <div className='tituleScreenRegister' ><span id='styleScreenRegister'>Efetuar o Registro</span></div> */}
-            {/* <form id='styleFormRegister' onSubmit={handleSubmit} >
-                <label id='labelEmailRegister'>Email</label>
-                <input name='email' id='inputEmailRegister' value={dataForm.email} onChange={handleInputChange} type="email" placeholder='Digite o Email' />
-                <label id='labelPasswordRegister'>Senha</label>
-                <input name='password' id='inputPasswordRegister' value={dataForm.password} onChange={handleInputChange} type="text" placeholder='Digite a Senha' />
-                <button id='buttonRegister' type='submit'>Registrar</button>
-                <button id='buttonRegisterCancel' onClick={cancelRegister} type='submit'>Cancelar</button>
-
-
-            </form> */}
-    <div id='screenOff'>
-
-<form className='form' onSubmit={handleSubmit}>
-           <p className='form-title'>sign in Register</p>
-           <div className='input-container'>
-            <input  type="email" name='email' value={dataForm.email} onChange={handleInputChange} placeholder='Enter Email' />
-            <span></span>
-           </div>
-           <div className='input-container'>
-            <input  type="text" name='password' value={dataForm.password} onChange={handleInputChange} placeholder='Digite a Senha' />
-           </div>
-            <button className='submit'  type='submit'>Registrar</button>
-            <p className='signup-link'>
-            <button  onClick={cancelRegister}> Cancel</button></p>
-          </form>
-    </div>
+            <div id='screenOff'>
+                <form className='form' onSubmit={handleSubmit}>
+                    <p className='form-title'>sign in Register</p>
+                    <div className='input-container'>
+                        <input type="email" name='email' value={dataForm.email} onChange={handleInputChange} placeholder='Enter Email' />
+                        <span></span>
+                    </div>
+                    <div className='input-container'>
+                        <input type="text" name='password' value={dataForm.password} onChange={handleInputChange} placeholder='Digite a Senha' />
+                    </div>
+                    <button className='submit' type='submit'>Registrar</button>
+                    <p className='signup-link'>
+                        <button onClick={cancelRegister}> Cancel</button></p>
+                </form>
+            </div>
             {errorMessage && <p id='editErrRegister'>{errorMessage}</p>}
             {errorMessage === 'Usuario Cadastrado' && <p id='editSuccess'>Usuario Cadastrado</p>}
-
         </>
     )
 }

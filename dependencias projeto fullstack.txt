@@ -14,7 +14,8 @@ npm install @types/cors
 
 2 -configurar o ambiente typescript
     "dev:server": "ts-node-dev --respawn --transpile-only src/server.ts"
-    - yarn tsc --init    - yarn tsc 
+    - yarn tsc --init    
+    - yarn tsc 
     "outDir": "./dist",  
 
 3- criar server com express
