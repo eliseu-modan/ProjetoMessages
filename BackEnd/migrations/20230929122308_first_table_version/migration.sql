@@ -1,11 +1,12 @@
 -- CreateTable
-CREATE TABLE `User` (
+CREATE TABLE `CreateMessages` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(191) NOT NULL DEFAULT '',
     `email` VARCHAR(191) NOT NULL,
     `subject` VARCHAR(191) NOT NULL,
+    `userId` INTEGER NULL,
 
-    UNIQUE INDEX `User_email_key`(`email`),
+    UNIQUE INDEX `CreateMessages_email_key`(`email`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -18,3 +19,6 @@ CREATE TABLE `CreateUser` (
     UNIQUE INDEX `CreateUser_email_key`(`email`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- AddForeignKey
+ALTER TABLE `CreateMessages` ADD CONSTRAINT `CreateMessages_userId_fkey` FOREIGN KEY (`userId`) REFERENCES `CreateUser`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;

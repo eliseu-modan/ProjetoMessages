@@ -396,10 +396,23 @@ border: solid 3px #c3c3c3;
 }
 #StatusLogin{
     position: absolute;
+    display: flex;
     padding: 20px;
-    left: 45%;
+    top: 10px;
+    /* left: 43%; */
+    border-radius: 15px;
     background-color: #ff7676;
-    border-radius: 50px;
+    
+    
+}
+#container{
+    text-align: center; /* Centralizar texto horizontalmente */
+    height: 100vh; /* Definir a altura do contêiner para ocupar a altura da janela */
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center; /* Centralizar conteúdo verticalmente */
+    align-items: center; 
+     /* Centraliza o texto horizontalmente */
 
 }
 #editUsers{

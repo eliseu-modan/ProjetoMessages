@@ -1,17 +1,12 @@
 import { Request, Response } from 'express'
 import prisma from '../importPrisma';
 
-
-
-
 let userId: number; // Declare uma variável global para armazenar o userId
-export function outroComponente(userIdParam: number) {    
- userId = userIdParam
-
+export function outroComponente(userIdParam: number) {
+    userId = userIdParam
 }
 export default {
-
-    async CreateMessages( req: Request, res: Response) {
+    async CreateMessages(req: Request, res: Response) {
         console.log(userId)
         try {
             const { email, name, subject } = req.body;
@@ -22,23 +17,32 @@ export default {
             const createDataFrontEnd = await prisma.createMessages.create({
                 data: DataMesssages
             })
-            
         }
-
         catch (error) {
             console.log('erro na requisição', error)
         }
     },
     async ShowMessages(req: Request, res: Response) {
         try {
-            
             const MessagesData = await prisma.createMessages.findMany({
-                where :{
-                    userId : userId 
+                where: {
+                    userId: userId
                 }
             });
-         
-            console.log('dados resgatados de mensagem ',MessagesData)
+            const messagesToDelete = await prisma.createMessages.findMany({
+                where: {
+                    userId: null,
+                },
+            });
+            // Exclua as mensagens encontradas
+            for (const message of messagesToDelete) {
+                await prisma.createMessages.delete({
+                    where: {
+                        id: message.id,
+                    },
+                });
+            }
+            console.log('dados resgatados de mensagem ', MessagesData)
             res.json(MessagesData)
         }
         catch (error) {
@@ -86,4 +90,6 @@ export default {
         }
 
     }
+
+
 }

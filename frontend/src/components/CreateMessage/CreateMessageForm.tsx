@@ -27,6 +27,8 @@ const MyForm: React.FC = () => {
     try {
       api.post('users/front', formData)
       console.log(formData);
+
+
     } catch (error) {
       console.error('Erro ao enviar os dados ', error)
     }
