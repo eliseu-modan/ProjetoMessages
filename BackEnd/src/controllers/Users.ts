@@ -9,8 +9,11 @@ export default {
         select: {
           id: true,
           email: true,
+          admin : true
+
         },
       });
+
       console.log('dados resgatados', users)
       res.json(users)
     } catch (error) {
@@ -30,4 +33,6 @@ export default {
     }
   }
 }
+
+
 

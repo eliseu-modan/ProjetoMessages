@@ -4,8 +4,8 @@ import bcrypt from 'bcryptjs';
 
 export default {
     async NewUser(req: Request, res: Response) {
-        const { email, password,admin } = req.body
-        console.log(email ,password )
+        const { email, password, admin } = req.body
+        console.log(email, password)
 
 
         try {
@@ -18,18 +18,11 @@ export default {
                 return res.status(401).json({ message: 'Este email já está em uso.' });
             }
             const hashedPassword = await bcrypt.hash(password, 10);
-            
             const newUser = await prisma.createUser.create({
                 data: {
                     email,
                     password: hashedPassword,
                     admin
-                    
-                 
-                    
-                    
-                    
-                    
                 }
             });
             console.log('Usuario Registrado', email, password)

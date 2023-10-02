@@ -9,23 +9,17 @@ interface dataFormI {
   password: string
 }
 
-
 const Login: React.FC = () => {
-
-
-
-
   useEffect(() => {
     addAuthorizationHeader();
   }, [])
   // Chame a função fetchData quando o componente for montado
-
-
-
-
   const [errorMessage, setErrorMessage] = useState('');
   const [showLogin, setShowLogin] = useState(true);
-  console.log(showLogin)
+  const [isAdmin , setIsAdmin] = useState(false)
+
+  console.log(isAdmin)
+
   const [dataForm, setdataFormLogin] = useState<dataFormI>({
     email: '',
     password: ''
@@ -42,36 +36,33 @@ const Login: React.FC = () => {
     )
   }
 
-
   console.log(errorMessage)
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
     event.preventDefault()
-
     try {
       const response = await api.post('/users/login', dataForm)
-
-
-
+      
+      const admin = response.data.admin
+      if(admin === true){
+        setIsAdmin(true)
+      }
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
         window.location.href = '/';
+        
       } else {
         console.log('erro no Token')
       }
-
     } catch (error: any) {
       if (error.response && error.response.status === 401) {
         console.log("erro 401 : ", error.response.data.message)
-
         setErrorMessage(error.response.data.message)
-
         setInterval(() => {
           window.location.reload()
         }, 2000)
       }
     }
   }
-
   return (
     <>
       {errorMessage && <div id='container'><p id='StatusLogin'>{errorMessage}</p></div>}
@@ -90,7 +81,6 @@ const Login: React.FC = () => {
             <p className='signup-link'>No account?
               <button onClick={Cadastrar}> Cadastrar</button></p>
           </form>
-
         </div>
       ) : (
         <div id='sreenRegister'>

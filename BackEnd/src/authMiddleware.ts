@@ -2,6 +2,7 @@ import jwt, { Secret } from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
 import config from 'config';
 
+
 const secretKey: Secret = config.get('jwtSecret');
 function authenticateToken(req: Request, res: Response, next: NextFunction) {
   const authorizationHeader = req.header('Authorization');

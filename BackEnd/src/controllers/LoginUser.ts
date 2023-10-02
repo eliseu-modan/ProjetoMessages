@@ -80,12 +80,13 @@ export default {
       console.log('LOGIN EFETUADO')
       const token = generateJwtToken(userId, 28800);
       const userIdParam = userCreate.id; // Onde você obtém o userId
-
+      const admin = userCreate.admin
+        console.log(admin)
       // Chame o outroComponente e passe o userId
       outroComponente(userIdParam);
       // Retorne o token JWT na resposta
       console.log(token)
-      return res.status(200).json({ token, message: `Login Bem Sucedido ` });
+      return res.status(200).json({admin, token,  message: `Login Bem Sucedido ` });
 
     } catch (error) {
       console.error('Erro ao processar a solicitação de login:', error);
