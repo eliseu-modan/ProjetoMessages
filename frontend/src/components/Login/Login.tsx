@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Register from './Register';
 import api from '../../services/api';
 import { addAuthorizationHeader } from '../../MiddlewareToken';
+import { useAdminContext } from '../../services/Context';
 
 
 interface dataFormI {
@@ -16,9 +17,11 @@ const Login: React.FC = () => {
   // Chame a função fetchData quando o componente for montado
   const [errorMessage, setErrorMessage] = useState('');
   const [showLogin, setShowLogin] = useState(true);
-  const [isAdmin , setIsAdmin] = useState(false)
 
-  console.log(isAdmin)
+  const { setIsAdmin } = useAdminContext();
+
+
+
 
   const [dataForm, setdataFormLogin] = useState<dataFormI>({
     email: '',
@@ -41,15 +44,18 @@ const Login: React.FC = () => {
     event.preventDefault()
     try {
       const response = await api.post('/users/login', dataForm)
-      
-      const admin = response.data.admin
-      if(admin === true){
-        setIsAdmin(true)
-      }
       if (response.data.token) {
         localStorage.setItem('token', response.data.token);
+        localStorage.setItem('isAdmin', response.data.admin);
+
+        const value = response.data.admin
+        localStorage.setItem('isAdmin', value);
+
+        const isAdmin = value !== null ? JSON.parse(value) : false;
+        setIsAdmin(isAdmin)
+
+
         window.location.href = '/';
-        
       } else {
         console.log('erro no Token')
       }

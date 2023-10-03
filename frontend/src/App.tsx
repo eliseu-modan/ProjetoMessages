@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from 'react';
+import React, { Children, useEffect, useState } from 'react';
 import User from './components/CreateMessage/CreateMessageForm';
 import ScreenLogin from './components/Login/Login';
 import '../src/style/style.css';
 import Users from './components/Users/Users';
 import api from './services/api';
 import { BrowserRouter as Router, Route, Link, Routes } from 'react-router-dom';
-import { AxiosResponse } from 'axios'; // Importe o tipo AxiosResponse do módulo axios
+import { AdminContextProvider } from './services/Context';
+import {useAdminContext} from './services/Context'
 
-
-interface LoginResponse {
-  adminn: boolean;
-
-}
 
 function App() {
+  const{isAdmin} = useAdminContext()
+
+  
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const token = localStorage.getItem('token');
   useEffect(() => {
@@ -29,9 +28,12 @@ function App() {
 
   return (
     <div className="App">
+
+        
       <div>
         {isLoggedIn ? (
           <>
+          {isAdmin ? (
             <Router>
               <div id='buttonUsuarios'>
                 <Link to="/usuarios/Users"> Usuarios</Link>
@@ -40,12 +42,12 @@ function App() {
                 </Routes>
               </div>
             </Router>
-          
+          ) : (' ') }
             <User></User>
           </>
         ) : (
           <ScreenLogin></ScreenLogin>
-        )}
+          )}
       </div>
     </div>
   );
